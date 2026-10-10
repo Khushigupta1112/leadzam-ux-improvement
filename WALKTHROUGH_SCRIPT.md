@@ -1,78 +1,112 @@
 # 3–5 Minute Screen Recording Walkthrough Script
 
-Use this structured script when recording your screen for the LeadZam assessment submission (using Loom, OBS, or Windows Game Bar `Win + G`).
+**LeadZam UI/UX & Frontend Intern Assessment**  
+**Candidate:** Khushi Gupta  
+**Target Duration:** ~3.5 to 4.5 Minutes  
 
 ---
 
-## Video Outline & Timing (Total: ~3.5 to 4 Minutes)
+## 🎬 Screen Setup Checklist (Before Hitting Record)
 
-| Section | Target Time | Key Goal |
-|---|---|---|
-| **1. Introduction & Audit Findings** | 0:00 – 1:00 | Summarize LeadZam audit & show findings |
-| **2. Selected Problem & Rationale** | 1:00 – 1:45 | Explain why the 0% conversion rate was picked |
-| **3. Figma Redesign Walkthrough** | 1:45 – 2:30 | Show Figma frames (No Leads, Zero Conversions, Add Lead, Mobile) |
-| **4. Live Working Prototype Demo** | 2:30 – 3:30 | Live interaction in browser (validation, adding lead, demo bar) |
-| **5. Wrap-up & AI Reflection** | 3:30 – 4:00 | Briefly cover AI usage, ownership, and next steps |
+Have these **3 tabs** open and ready in your browser:
+1. **Tab 1:** GitHub repository displaying [`AUDIT.md`](https://github.com/Khushigupta1112/leadzam-ux-improvement/blob/main/AUDIT.md)
+2. **Tab 2:** Your Figma file: [LeadZam — Conversion Rate Redesign](https://www.figma.com/design/7il97yoFswo4JPs2bArmow/LeadZam-%E2%80%94-Conversion-Rate-Redesign?node-id=2-3)
+3. **Tab 3:** Live running prototype at [http://localhost:5173/](http://localhost:5173/)
 
 ---
 
-## Word-for-Word Script
+## ⏱️ Section 1: Introduction & My Audit Findings (0:00 – 1:05)
 
-### 1. Introduction & Key Audit Findings (0:00 – 1:00)
-> *"Hi everyone, I’m Khushi Gupta. Today I’m walking you through my UI/UX audit and working frontend implementation for LeadZam CRM."*
->
-> *(Show `AUDIT.md` or Figma audit slide)*
->
-> *"While auditing LeadZam, I focused on high-impact product friction rather than surface-level styling. I identified four core findings:*
-> 1. *First, the **0% Conversion Rate Paradox**: when a workspace has 0 leads, the CRM displays a genuine 0% rate, communicating false failure before any leads are even collected.*
-> 2. *Second, a **Disconnected Setup Flow**: setup checklist tasks navigate users away from the dashboard without inline shortcuts.*
-> 3. *Third, **Weak Form Error Recovery**: lack of explicit warning banners and inline error messaging in lead creation dialogs.*
-> 4. *And fourth, **Mobile Hierarchy**: action buttons and multi-column KPI grids squishing on smaller viewports."*
+**[Screen: Tab 1 — Scroll through `AUDIT.md` on GitHub]**
 
----
-
-### 2. Why I Selected This Problem (1:00 – 1:45)
-> *"I selected the **0% Conversion Rate Paradox** as my high-impact problem to solve because it sits right at the center of the Day 1 onboarding experience.*
+> *"Hi everyone, my name is Khushi Gupta. Today, I’m walking you through my UI/UX product audit, my Figma redesign, and my working React and TypeScript frontend prototype for LeadZam CRM.*
 >
-> *Mathematically, conversion rate is Won Leads divided by Total Leads. When Total Leads is zero, that equation is undefined. Displaying 0% creates immediate user doubt: Did my ads fail? Did my form break?*
+> *When auditing LeadZam, I evaluated the product as both a designer and a frontend engineer. I looked closely at account access safety, data accuracy, and how easy it is for an administrator to understand everyday workspace activity.*
 >
-> *By redesigning this, we don't just fix a calculation error—we transform a passive dead end into an active onboarding ramp with an inline 'Add first lead' action."*
+> *I identified four key observations:*
+>
+> 1. *First, **Account Access Safety in Settings**: In `Password & Security`, when Google is the sole connected sign-in method and no password is set, the application displays an active 'Disconnect Google' action. Without defensive confirmation, this creates a potential risk of accidental account lockout.*
+> 2. *Second, **The 0% Conversion Rate on Empty Workspaces**: On the Admin Dashboard, the conversion rate displays `0%` even when total leads and submissions are zero. Mathematically, zero divided by zero is undefined, and presenting this as 0% sends a false failure signal to new customers on Day 1.*
+> 3. *Third, **Technical Strings in the Audit Log**: In workspace settings, the audit log exposes raw developer keys like `demo_data.loaded` and `auth.google_provisioned`, which increases cognitive load for non-technical sales managers.*
+> 4. *And fourth, **Trial Messaging Consistency**: A minor discrepancy where the marketing navbar states 'Start Free Trial' while the hero CTA states 'Start 14-Day Free Trial.'*
+>
+> *I also reviewed the login page signup link, but intentionally did not classify it as an issue since dual entry points follow standard SaaS conventions."*
 
 ---
 
-### 3. The Redesigned Experience in Figma (1:45 – 2:30)
-> *(Show your Figma file or the images in `design-reference/`)*
+## ⏱️ Section 2: Why I Chose the Conversion Rate Problem (1:05 – 1:50)
+
+**[Screen: Tab 1 — Point to Section 3: "Prioritization & Selection Rationale" in `AUDIT.md`]**
+
+> *"Among these findings, I selected **Finding #2—the 0% Conversion Rate Paradox**—for deep redesign and implementation.*
 >
-> *"Here is the design solution I created in Figma:*
-> - *In the **No Leads** state, the rate is shown as unavailable with a dash `—` and the label 'No data yet', accompanied by reassuring copy and a primary blue `+ Add first lead` button.*
-> - *In the **Zero Conversions** state—where leads actually exist but none have been won yet—we show an authentic `0%`, with transparent formula context: `Won ÷ total leads` and `Won Leads: 0`.*
-> - *For the **Add Lead** interaction, I designed both the default pristine state and a robust validation error state with a top alert banner and inline field errors.*
-> - *Finally, I created a **Mobile View** at 390px showing single-column stacked cards and a prominent top mobile CTA."*
+> *Here is why:*
+> - *While account disconnection is a potential backend edge-case, the conversion rate paradox directly impacts **100% of new users landing on LeadZam on Day 1**.*
+> - *First impressions dictate trial-to-paid activation. When a new sales team logs in and sees a bold '0%', they assume their ads, webhooks, or forms have failed before they've even begun.*
+> - *More importantly, it represents a huge **missed activation opportunity**. Instead of leaving an empty, confusing card, we can turn that metric into an actionable onboarding on-ramp that guides users to log their very first lead.*
+>
+> *This problem allowed me to demonstrate end-to-end product thinking, clean UI state management, and accessible frontend engineering."*
 
 ---
 
-### 4. Working Frontend Implementation (2:30 – 3:30)
-> *(Switch to browser at `http://localhost:5173/`)*
+## ⏱️ Section 3: The Redesign in Figma (1:50 – 2:35)
+
+**[Screen: Tab 2 — Switch to Figma file and zoom into the frames]**
+
+> *"Here is how I designed the solution in Figma across five key frames:*
 >
-> *"Now let's jump into the live React + TypeScript prototype.*
+> **[Point to Frame 1: Workspace / No Leads]**  
+> *- In the **No Leads** state, when Total Leads is zero, we replace the confusing 0% with an unavailable em dash `—` and the headline 'No data yet.' We add reassuring copy: 'Your conversion rate will appear once leads are added,' and introduce a primary blue CTA: `+ Add first lead` directly inside the card.*
 >
-> *(Click `+ Add first lead` in the KPI card)*  
-> *"When we click 'Add first lead', notice the accessible dialog opens. If I attempt to submit empty required fields..."*  
-> *(Click Save to show validation)*  
-> *"...the top banner alert appears, inputs highlight in red, and accessible inline error messages guide the user.*
+> **[Point to Frame 2: Zero Conversions]**  
+> *- In the **Zero Conversions** state—where leads actually exist in the pipeline (such as 12 leads), but none have converted yet—we show an authentic `0%`. Notice the transparent formula breakdown: `Won ÷ total leads`, `Won Leads: 0`, and the clear status 'No leads have converted yet.'*
 >
-> *(Fill in `Alex Morgan`, `alex@example.com` and click Save)*  
-> *"When I submit valid data, the modal closes, a toast confirms creation, Total Leads updates to 1, and the conversion rate seamlessly changes from 'No data yet' to 0% with 'Won Leads: 0'.*
+> **[Point to Frames 3 & 4: Add Lead Modal Default & Validation Error]**  
+> *- To support that CTA, I designed the **Add Lead Modal** in both its pristine default state, and a clear validation error state with a top warning banner—'Lead not saved. Complete the required fields below'—along with red borders and inline error text.*
 >
-> *(Show Demo Controls bar at top)*  
-> *"To make review effortless, I built prototype controls matching the 'Illustrative mock data' indicator from the Figma design. Reviewers can instantly switch to Scenario 2 to verify the 12 leads / 0 won baseline, or click '+1 Won' to see the rate recalculate in real-time to 8.3%, 16.7%, and 25% with zero division errors.*
->
-> *(Toggle browser to mobile width)*  
-> *"And resizing the viewport shows the responsive single-column layout matching the mobile Figma frame."*
+> **[Point to Frame 5: Mobile View]**  
+> *- Finally, in the **Mobile View** at 390px, KPI cards stack cleanly into single-column cards, and we feature a prominent top sticky action to maintain mobile conversion velocity."*
 
 ---
 
-### 5. Wrap-up & AI Usage (3:30 – 4:00)
-> *"For AI usage: I used AI to accelerate boilerplate scaffolding, strict TypeScript typing, and edge-case test suites. However, I personally inspected every Figma pixel, rewrote the validation error flow to strictly match our Figma designs rather than generic browser alerts, and verified all 7 unit test assertions.*
+## ⏱️ Section 4: Live Frontend Prototype Demo (2:35 – 3:50)
+
+**[Screen: Tab 3 — Switch to live browser at `http://localhost:5173/`]**
+
+> *"Now, let's explore the working frontend prototype, built with React, strict TypeScript, Tailwind CSS, and Vite.*
 >
-> *Thank you, and I look forward to discussing this in the follow-up conversation!"*
+> **[Action: Point out the Conversion Rate card]**  
+> *"On initial load, the dashboard opens in our baseline **No Leads** state. Total Leads is zero, and Conversion Rate displays '—' with 'No data yet' and our 'Add first lead' button. Division by zero is completely guarded in our TypeScript logic.*
+>
+> **[Action: Click `+ Add first lead`]**  
+> *"Clicking the button opens our accessible Add Lead dialog with autofocus and background scroll locking.*
+>
+> **[Action: Click `Save` with blank fields]**  
+> *"If I attempt to submit without filling required fields, our validation lifecycle kicks in: The top warning banner appears, the inputs outline in red, and accessible inline error messages guide the user. It also strictly validates email format.*
+>
+> **[Action: Type `Alex Morgan` and `alex@leadzam.io`, then click `Save`]**  
+> *"When I enter valid information and hit Save, the modal closes, a success toast confirms creation, Total Leads increments to 1, and look at the conversion card: It immediately transitions from 'No data yet' to a genuine '0%', with 'Won Leads: 0' and 'No leads have converted yet.'*
+>
+> **[Action: Point to Demo Controls at the top and click `2. Zero Conversions`]**  
+> *"To make review effortless for your team, I built prototype controls at the top matching the 'Illustrative mock data' badge from Figma:*
+> - *Clicking **Scenario 2** demonstrates our 12 leads baseline.*
+> - *Clicking **+1 Won** immediately recalculates the conversion rate live—to 8.3%, 16.7%, and 25%—with zero division errors or layout shifts.*
+>
+> **[Action: Resize browser window or toggle mobile responsive emulator to ~390px]**  
+> *"And resizing down to mobile width demonstrates our responsive design: single-column card stacking, touch-friendly tap targets, and the top mobile action matching our Figma mobile frame."*
+
+---
+
+## ⏱️ Section 5: AI Usage & Engineering Ownership (3:50 – 4:20)
+
+**[Screen: Switch to GitHub README — AI Usage Notes section]**
+
+> *"Finally, regarding my AI usage: I used ChatGPT during the initial exploration to help organize my audit observations, and Gemini/Antigravity to accelerate boilerplate scaffolding, TypeScript typing, and edge-case unit test matrices.*
+>
+> *However, I exercised strict critical engineering ownership:*
+> - *When the AI suggested a generic browser alert for form errors, I **rejected it** and implemented custom accessible validation matching our exact Figma frames.*
+> - *I personally verified keyboard navigation, focus trap behavior, and executed 7 automated unit tests to ensure our conversion formulas never produce `NaN` or `Infinity`.*
+>
+> *All code is committed with an incremental Git history on GitHub, with production builds passing cleanly.*
+>
+> *Thank you so much for reviewing my work, and I look forward to discussing this in the follow-up conversation!"*
